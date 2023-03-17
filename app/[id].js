@@ -3,6 +3,7 @@ import React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import cities from '../data/cities';
 import { Ionicons } from '@expo/vector-icons';
+import Animated from 'react-native-reanimated';
 
 const CityDetails = () => {
   const { id } = useSearchParams();
@@ -16,8 +17,17 @@ const CityDetails = () => {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: city.image }} />
-      <Text style={styles.name}>{city.name}</Text>
+      <Animated.Image
+        sharedTransitionTag={`image-${city.id}`}
+        style={styles.image}
+        source={{ uri: city.image }}
+      />
+      <Animated.Text
+        sharedTransitionTag={`title-${city.id}`}
+        style={styles.name}
+      >
+        {city.name}
+      </Animated.Text>
       <View style={styles.detailsContainer}>
         <Text style={styles.detailsTitle}>Details:</Text>
         <Text style={styles.detailsText}>
@@ -49,7 +59,7 @@ const styles = StyleSheet.create({
     aspectRatio: 16 / 9,
   },
   name: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     marginHorizontal: 16,
     marginTop: 16,

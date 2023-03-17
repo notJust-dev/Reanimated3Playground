@@ -5,6 +5,9 @@
       "bundler": "metro"
     },
     "name": "ReanimatedPlayground",
-    "slug": "ReanimatedPlayground"
+    "slug": "ReanimatedPlayground",
+    "ios": {
+      "bundleIdentifier": "com.vadinsavin.ReanimatedPlayground"
+    }
   }
 }

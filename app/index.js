@@ -9,13 +9,23 @@ import {
   Pressable,
 } from 'react-native';
 import cities from '../data/cities';
+import Animated from 'react-native-reanimated';
 
 const CityGrid = () => {
   const renderItem = ({ item }) => (
     <Link href={`/${item.id}`} asChild>
       <Pressable style={styles.city}>
-        <Image style={styles.image} source={{ uri: item.image }} />
-        <Text style={styles.name}>{item.name}</Text>
+        <Animated.Image
+          sharedTransitionTag={`image-${item.id}`}
+          style={styles.image}
+          source={{ uri: item.image }}
+        />
+        <Animated.Text
+          sharedTransitionTag={`title-${item.id}`}
+          style={styles.name}
+        >
+          {item.name}
+        </Animated.Text>
       </Pressable>
     </Link>
   );
@@ -44,14 +54,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 2,
     overflow: 'hidden',
+    alignItems: 'center',
   },
   image: {
     width: '100%',
     height: '70%',
   },
   name: {
-    textAlign: 'center',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     marginTop: 8,
   },
